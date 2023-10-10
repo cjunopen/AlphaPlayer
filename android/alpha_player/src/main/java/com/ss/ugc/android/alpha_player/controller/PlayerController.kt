@@ -271,11 +271,13 @@ class PlayerController(val context: Context, owner: LifecycleOwner, val alphaVid
         }
         mediaPlayer.setLooping(dataSource.isLooping)
         mediaPlayer.setDataSource(dataPath)
-        if (alphaVideoView.isSurfaceCreated()) {
-            prepareAsync()
-        } else {
-            suspendDataSource = dataSource
-        }
+        //dialog show 之后才会创建surface，所以这里就不判断了
+        prepareAsync()
+//        if (alphaVideoView.isSurfaceCreated()) {
+//            prepareAsync()
+//        } else {
+//            suspendDataSource = dataSource
+//        }
     }
 
     @WorkerThread
