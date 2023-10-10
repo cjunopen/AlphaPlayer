@@ -271,9 +271,13 @@ class PlayerController(context: Context, owner: LifecycleOwner, val alphaVideoVi
             alphaVideoView.setScaleType(it)
         }
         mediaPlayer.setDataSource(dataPath)
-        if (alphaVideoView.isSurfaceCreated()) {
-            prepareAsync()
-        }
+        //dialog show 之后才会创建surface，所以这里就不判断了
+        prepareAsync()
+//        if (alphaVideoView.isSurfaceCreated()) {
+//            prepareAsync()
+//        } else {
+//            suspendDataSource = dataSource
+//        }
     }
 
     @WorkerThread
