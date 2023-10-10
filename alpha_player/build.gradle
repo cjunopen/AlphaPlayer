@@ -1,11 +1,19 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-
+apply plugin: 'kotlin-android-extensions'
 android {
-    compileSdkVersion 29
+    compileSdkVersion 28
+    buildToolsVersion "29.0.3"
+
 
     defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 14
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
     }
 
     buildTypes {
@@ -14,17 +22,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-}
 
-//publishing {
-//    publications {
-//        mavenJava(MavenPublication) {
-//            groupId = 'com.ss.ugc.android.alpha_player'
-//            artifactId = 'library'
-//            version = '1.0.4'
-//        }
-//    }
-//}
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
