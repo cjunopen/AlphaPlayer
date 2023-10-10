@@ -28,9 +28,9 @@ android {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            groupId = 'org.gradle.sample'
+            groupId = 'com.ss.ugc.android.alpha_player'
             artifactId = 'library'
-            version = '1.1'
+            version = '1.0.4'
         }
     }
 }
