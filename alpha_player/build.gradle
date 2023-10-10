@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'maven-publish'
+//apply plugin: 'maven-publish'
 android {
     compileSdkVersion 28
     buildToolsVersion "29.0.3"
@@ -25,15 +25,15 @@ android {
 
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            groupId = 'com.ss.ugc.android.alpha_player'
-            artifactId = 'library'
-            version = '1.0.4'
-        }
-    }
-}
+//publishing {
+//    publications {
+//        mavenJava(MavenPublication) {
+//            groupId = 'com.ss.ugc.android.alpha_player'
+//            artifactId = 'library'
+//            version = '1.0.4'
+//        }
+//    }
+//}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
