@@ -16,11 +16,13 @@ class DefaultSystemPlayer : AbsPlayer() {
     val retriever: MediaMetadataRetriever = MediaMetadataRetriever()
     lateinit var dataPath : String
 
+    var onCompletionListener : MediaPlayer.OnCompletionListener ?= null
 
     override fun initMediaPlayer() {
         mediaPlayer = MediaPlayer()
 
         mediaPlayer.setOnCompletionListener(MediaPlayer.OnCompletionListener { mediaPlayer ->
+            onCompletionListener?.onCompletion(mediaPlayer)
             completionListener?.onCompletion()
         })
 
