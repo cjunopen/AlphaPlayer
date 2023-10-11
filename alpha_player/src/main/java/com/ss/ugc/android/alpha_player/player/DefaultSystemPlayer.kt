@@ -10,7 +10,7 @@ import java.lang.Exception
 /**
  * created by dengzhuoyao on 2020/07/07
  */
-class DefaultSystemPlayer : AbsPlayer() {
+open class DefaultSystemPlayer : AbsPlayer() {
 
     lateinit var mediaPlayer : MediaPlayer
     val retriever: MediaMetadataRetriever = MediaMetadataRetriever()
