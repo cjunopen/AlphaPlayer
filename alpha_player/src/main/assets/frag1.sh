@@ -6,7 +6,7 @@ uniform samplerExternalOES sTexture;
 void main() {
     vec4 color = texture2D(sTexture, vTextureCoord);
     vec4 color2Map = vec4(1.0, 1.0, 1.0, 1.0);
-    if (vTextureCoord.y < 0.5) {
+    if (vTextureCoord.y <= 0.5) {
         color2Map = texture2D(sTexture, vec2(vTextureCoord.x, vTextureCoord.y + 0.5));
         gl_FragColor = vec4(color.r, color.g, color.b, color2Map.g);
     } else {

@@ -4,6 +4,7 @@ import android.media.MediaMetadataRetriever
 import android.media.MediaPlayer
 import android.text.TextUtils
 import android.view.Surface
+import com.blankj.utilcode.util.ThreadUtils
 import com.ss.ugc.android.alpha_player.model.VideoInfo
 import java.lang.Exception
 
@@ -37,7 +38,11 @@ open class DefaultSystemPlayer : AbsPlayer() {
 
         mediaPlayer.setOnInfoListener { mp, what, extra ->
             if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
-                firstFrameListener?.onFirstFrame()
+                ThreadUtils.runOnUiThreadDelayed(object : Runnable{
+                    override fun run() {
+                        firstFrameListener?.onFirstFrame()
+                    }
+                }, 30)
             }
             false
         }

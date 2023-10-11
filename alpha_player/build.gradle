@@ -32,4 +32,5 @@ dependencies {
     def lifecycle_version = "1.1.0"
     implementation "android.arch.lifecycle:runtime:$lifecycle_version"
     annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
+    implementation('com.blankj:utilcode:1.30.0')
 }
