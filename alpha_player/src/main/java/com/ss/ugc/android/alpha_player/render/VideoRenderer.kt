@@ -6,6 +6,7 @@ import android.opengl.Matrix
 import android.os.Build
 import android.util.Log
 import android.view.Surface
+import com.ss.ugc.android.alpha_player.controller.PlayerController
 import com.ss.ugc.android.alpha_player.model.ScaleType
 import com.ss.ugc.android.alpha_player.utils.ShaderUtil
 import com.ss.ugc.android.alpha_player.utils.TextureCropUtil
@@ -272,7 +273,8 @@ class VideoRenderer(val alphaVideoView: IAlphaVideoView) : IRender {
      */
     private fun createProgram(): Int {
         val vertexSource = ShaderUtil.loadFromAssetsFile("vertex.sh", alphaVideoView.getView().resources)
-        val fragmentSource = ShaderUtil.loadFromAssetsFile("frag.sh", alphaVideoView.getView().resources)
+        val path = if (PlayerController.isLeftRightDirection) "frag.sh" else "frag1.sh"
+        val fragmentSource = ShaderUtil.loadFromAssetsFile(path, alphaVideoView.getView().resources)
 
         val vertexShader = loadShader(GLES20.GL_VERTEX_SHADER, vertexSource)
         if (vertexShader == 0) {

@@ -1,6 +1,7 @@
 package com.ss.ugc.android.alpha_player.utils;
 
 
+import com.ss.ugc.android.alpha_player.controller.PlayerController;
 import com.ss.ugc.android.alpha_player.model.ScaleType;
 
 /**
@@ -128,11 +129,20 @@ public class TextureCropUtil {
     }
 
     private static float[] getZoomData(float leftZoomRatio, float topZoomRatio, float rightZoomRatio, float bottomZoomRatio) {
-        return new float[] {
-                // X, Y, Z, U, V
+        if (PlayerController.Companion.isLeftRightDirection()){
+            return new float[] {
+                    // X, Y, Z, U, V
                 -1.0f + leftZoomRatio * 2, -1.0f + bottomZoomRatio * 2, 0, 0.5f, 0.f,
                 1.0f - rightZoomRatio * 2, -1.0f + bottomZoomRatio * 2, 0, 1.f, 0.f,
                 -1.0f + leftZoomRatio * 2, 1.0f - topZoomRatio * 2, 0, 0.5f, 1.f,
+                1.0f - rightZoomRatio * 2, 1.0f - topZoomRatio * 2, 0, 1.f, 1.f,
+            };
+        }
+        return new float[] {
+                // X, Y, Z, U, V
+                -1.0f + leftZoomRatio * 2, -1.0f + bottomZoomRatio * 2, 0, 0.0f, 0.5f,
+                1.0f - rightZoomRatio * 2, -1.0f + bottomZoomRatio * 2, 0, 1.f, 0.5f,
+                -1.0f + leftZoomRatio * 2, 1.0f - topZoomRatio * 2, 0, 0.f, 1.f,
                 1.0f - rightZoomRatio * 2, 1.0f - topZoomRatio * 2, 0, 1.f, 1.f,
         };
     }

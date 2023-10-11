@@ -34,7 +34,7 @@ import java.lang.Exception
 /**
  * created by dengzhuoyao on 2020/07/08
  */
-class PlayerController(context: Context, owner: LifecycleOwner, val alphaVideoViewType: AlphaVideoViewType, mediaPlayer: IMediaPlayer): IPlayerControllerExt, LifecycleObserver, Handler.Callback {
+class PlayerController(context: Context, owner: LifecycleOwner, val alphaVideoViewType: AlphaVideoViewType, mediaPlayer: IMediaPlayer, isLeftRightDirection : Boolean): IPlayerControllerExt, LifecycleObserver, Handler.Callback {
 
     companion object {
         const val INIT_MEDIA_PLAYER: Int = 1
@@ -46,11 +46,12 @@ class PlayerController(context: Context, owner: LifecycleOwner, val alphaVideoVi
         const val DESTROY: Int = 7
         const val SURFACE: Int = 8
         const val RESET: Int = 9
+        var isLeftRightDirection : Boolean = false
 
-        fun get(configuration: Configuration, mediaPlayer: IMediaPlayer? = null): PlayerController {
+        fun get(configuration: Configuration, mediaPlayer: IMediaPlayer? = null, isLeftRightDirection: Boolean): PlayerController {
             return PlayerController(configuration.context, configuration.lifecycleOwner,
                 configuration.alphaVideoViewType,
-                mediaPlayer ?: DefaultSystemPlayer())
+                mediaPlayer ?: DefaultSystemPlayer(), isLeftRightDirection)
         }
     }
 
@@ -82,6 +83,7 @@ class PlayerController(context: Context, owner: LifecycleOwner, val alphaVideoVi
     init {
         this.context = context
         this.mediaPlayer = mediaPlayer
+        PlayerController.isLeftRightDirection = isLeftRightDirection
         init(owner)
         initAlphaView()
         initMediaPlayer()
@@ -321,11 +323,18 @@ class PlayerController(context: Context, owner: LifecycleOwner, val alphaVideoVi
     @WorkerThread
     private fun parseVideoSize() {
         val videoInfo = mediaPlayer.getVideoInfo()
-        alphaVideoView.measureInternal((videoInfo.videoWidth / 2).toFloat(), videoInfo.videoHeight.toFloat())
+        var w = videoInfo.videoWidth
+        var h = videoInfo.videoHeight
+        if (isLeftRightDirection){
+            w = (w / 2)
+        }else{
+            h = (h / 2)
+        }
+        alphaVideoView.measureInternal(w.toFloat(), h.toFloat())
 
         val scaleType = alphaVideoView.getScaleType()
         mainHandler.post {
-            mPlayerAction?.onVideoSizeChanged(videoInfo.videoWidth / 2, videoInfo.videoHeight, scaleType)
+            mPlayerAction?.onVideoSizeChanged(w, h, scaleType)
         }
     }
 
