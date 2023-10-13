@@ -37,5 +37,9 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-core:2.9.3'
 
     implementation project(':alpha_player')
+
+    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
+    implementation('com.blankj:utilcode:1.30.0')
 //    implementation 'com.github.bytedance:AlphaPlayer:1.0.3'
 }
