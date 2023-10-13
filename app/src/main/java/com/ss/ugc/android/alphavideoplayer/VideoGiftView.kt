@@ -17,7 +17,6 @@ import com.ss.ugc.android.alpha_player.model.AlphaVideoViewType
 import com.ss.ugc.android.alpha_player.model.Configuration
 import com.ss.ugc.android.alpha_player.model.DataSource
 import com.ss.ugc.android.alpha_player.player.DefaultSystemPlayer
-import com.ss.ugc.android.alphavideoplayer.player.ExoPlayerImpl
 import com.ss.ugc.android.alphavideoplayer.utils.JsonUtil
 
 /**

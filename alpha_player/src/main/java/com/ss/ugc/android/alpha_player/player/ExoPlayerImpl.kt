@@ -1,4 +1,4 @@
-package com.ss.ugc.android.alphavideoplayer.player
+package com.ss.ugc.android.alpha_player.player
 
 import android.content.Context
 import android.net.Uri
@@ -22,7 +22,7 @@ import com.ss.ugc.android.alpha_player.player.AbsPlayer
  *
  * Implemented by ExoPlayer.
  */
-class ExoPlayerImpl(private val context: Context) : AbsPlayer(context) {
+open class ExoPlayerImpl(private val context: Context) : AbsPlayer(context) {
 
     private lateinit var exoPlayer: SimpleExoPlayer
     private val dataSourceFactory: DefaultDataSourceFactory
