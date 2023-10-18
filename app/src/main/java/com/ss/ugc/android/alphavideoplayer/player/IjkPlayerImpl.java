@@ -58,16 +58,12 @@ public class IjkPlayerImpl extends AbsPlayer {
         mIjkMediaPlayer.setOnInfoListener(new IMediaPlayer.OnInfoListener() {
             @Override
             public boolean onInfo(IMediaPlayer iMediaPlayer, int i, int i1) {
-                if (i == IMediaPlayer.MEDIA_INFO_AUDIO_RENDERING_START){
-                    ThreadUtils.runOnUiThreadDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (getFirstFrameListener() != null) {
-                                getFirstFrameListener().onFirstFrame();
-                            }
-                        }
-                    }, 50);
+                if (i == IMediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START){
+                    if (getFirstFrameListener() != null) {
+                        getFirstFrameListener().onFirstFrame();
+                    }
                 }
+                Log.d(TAG, "onInfo: i: " + i);
                 return false;
             }
         });
